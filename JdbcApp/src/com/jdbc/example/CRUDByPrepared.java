@@ -9,15 +9,27 @@ public class CRUDByPrepared {
 
 	public static void main(String[] args) throws Exception {
 
+		Scanner s=new Scanner(System.in);
+		
+		System.out.println("Enter id of employee ");
+		int id=s.nextInt();
+		
+		System.out.println("Enter name of employee ");
+		String name=s.next();
+		
+		System.out.println("Enter salary of employee ");
+		int sal=s.nextInt();
+		
+		
 		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee", "root", "test");
 
 		PreparedStatement ps = con.prepareStatement("insert into emp values (?,?,?)");
 		
-		ps.setInt(1, 3);
-		ps.setString(2, "shravani");
-		ps.setDouble(3, 10399);
+		ps.setInt(1, id);
+		ps.setString(2, name);
+		ps.setDouble(3, sal);
 		
 		int result=ps.executeUpdate();		
 
